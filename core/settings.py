@@ -123,3 +123,6 @@ AUTH_USER_MODEL = 'users.CustomUser'
 CELERY_TIMEZONE = "UTC"
 CELERY_BROKER_URL = 'redis://localhost:6379'
 CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+
+# config send email
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

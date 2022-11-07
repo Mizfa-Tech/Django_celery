@@ -1,4 +1,5 @@
 from django import forms
+from feedback.tasks import send_email_feedback_task
 
 
 class FeedBackForm(forms.Form):
@@ -8,4 +9,6 @@ class FeedBackForm(forms.Form):
     )
 
     def send_email(self):
-        pass
+        send_email_feedback_task.delay(
+            self.cleaned_data["email"], self.cleaned_data["message"]
+        )

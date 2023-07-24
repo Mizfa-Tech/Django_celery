@@ -28,6 +28,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # 3rd Party
+
+    # My app
+    'users.apps.UsersConfig',
+    'feedback.apps.FeedbackConfig',
+
 ]
 
 MIDDLEWARE = [
@@ -45,7 +52,7 @@ ROOT_URLCONF = 'core.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -108,3 +115,14 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# config custom user
+AUTH_USER_MODEL = 'users.CustomUser'
+
+# Celery Configuration Options
+CELERY_TIMEZONE = "UTC"
+CELERY_BROKER_URL = 'redis://localhost:6379'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+
+# config send email
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
